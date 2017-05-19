@@ -1,0 +1,101 @@
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="" />
+		<meta name="author" content="" />
+
+		<title>Sonstige Informationen</title>
+
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript"> jQuery.noConflict(); </script>
+		<script src="../js/ie-emulation-modes-warning.js"></script>
+		<script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+		<link href="../css/bootstrap.css" rel="stylesheet" />
+		<link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet" />
+		<link href="../css/dashboard.css" rel="stylesheet" />
+		<link rel="icon" href="img/favicon.ico" />
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+						aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="start">DUDE </a>
+					<a class="navbar-brand" href="upload">:: Upload </a>
+					<a class="navbar-brand" href="#">:: Beschreiben </a>
+					<a class="navbar-brand" href="#">:: Speichern </a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a href="../dataArchive/start">Zurück</a>
+						</li>
+					</ul>
+				</div><!--/.navbar-collapse -->
+			</div>
+		</nav>
+		<div class="jumbotron">
+			<div class="container">
+				<h1>Speichern</h1>
+			</div>
+		</div>
+		<div class="container mainbox">
+			<xed:form method="post" xmlns:dci="http://datacite.org/schema/kernel-4"
+				xmlns:xed="http://www.mycore.de/xeditor" role="form" class="form-group">
+				<xed:cancel url="/fachref/start" />
+				<xed:bind xpath="/technical">
+					<div class="col-md-12">
+						<div class="row">
+							<h2 class="sub-header">
+								<xed:output i18n="editor.label.embargo" />
+							</h2>
+							<xed:bind xpath="embargo">
+								<div class="form-group">
+									<div class="col-md-6">
+										<select id="embargo" class="form-control">
+											<option value="1">
+												<xed:output i18n="editor.option.publish" />
+											</option>
+											<option value="1">
+												<xed:output i18n="editor.option.oneYear" />
+											</option>
+											<option value="5">
+												<xed:output i18n="editor.option.fiveYears" />
+											</option>
+											<option value="inf">
+												<xed:output i18n="editor.option.never" />
+											</option>
+										</select>
+									</div>
+								</div>
+							</xed:bind>
+						</div>
+						<div class="col-sm-9 col-md-10 col-md-offset-1 main">
+							<div class="form-group">
+								<button id="save" class="btn btn-success" type="submit"
+									xed:target="servlet" xed:href="QuestionaireDefine">
+									<xed:output i18n="common.button.save" />
+								</button>
+								<button id="cancel" class="btn btn-danger" type="submit"
+									xed:target="cancel">
+									<xed:output i18n="common.button.cancel" />
+								</button>
+							</div>
+						</div>
+					</div>
+				</xed:bind>
+			</xed:form>
+		</div>
+	</body>
+</html>

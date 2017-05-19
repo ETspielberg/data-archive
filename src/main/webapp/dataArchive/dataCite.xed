@@ -1,0 +1,248 @@
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="" />
+		<meta name="author" content="" />
+
+		<title>DataCite Metadata Scheme</title>
+
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript"> jQuery.noConflict(); </script>
+		<script src="../js/ie-emulation-modes-warning.js"></script>
+		<script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+		<link href="../css/bootstrap.css" rel="stylesheet" />
+		<link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet" />
+		<link href="../css/dashboard.css" rel="stylesheet" />
+		<link rel="icon" href="img/favicon.ico" />
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+						aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="start">DUDE </a>
+					<a class="navbar-brand" href="upload">:: Upload </a>
+					<a class="navbar-brand" href="#">:: Beschreiben </a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a href="../dataArchive/start">Zurück</a>
+						</li>
+					</ul>
+				</div><!--/.navbar-collapse -->
+			</div>
+		</nav>
+		<div class="jumbotron">
+			<div class="container">
+				<h1>Beschreiben</h1>
+			</div>
+		</div>
+		<div class="container mainbox">
+			<xed:form method="post" xmlns:dci="http://datacite.org/schema/kernel-4"
+				xmlns:xed="http://www.mycore.de/xeditor" role="form" class="form-group">
+				<xed:cancel url="/fachref/start" />
+				<xed:bind xpath="/dci:resource">
+					<div class="col-md-12">
+						<div class="row">
+							<h2 class="sub-header">
+								<xed:output i18n="editor.label.title" />
+							</h2>
+							<xed:bind xpath="dci:title">
+								<div class="form-group">
+									<div class="col-md-10">
+										<input id="name" placeholder="{i18n:editor.placeholder.title}"
+											class="form-control input-md" type="text" />
+									</div>
+								</div>
+							</xed:bind>
+						</div>
+						<div class="row">
+							<xed:bind xpath="dci:identifier">
+								<h2 class="sub-header">Persistent Identifier</h2>
+								<input type="hidden" value="$handleValue" />
+								<h3>
+									<xed:output value="$handleValue" />
+								</h3>
+							</xed:bind>
+						</div>
+						<div class="row">
+							<h2 class="sub-header">
+								<xed:output i18n="editor.label.name" />
+							</h2>
+
+							<xed:bind xpath="dci:creators">
+								<xed:repeat xpath="dci:creator" min="1">
+									<div class="form-group">
+										<div class="col-md-8">
+											<input id="name" placeholder="{i18n:editor.placeholder.name}"
+												class="form-control input-md" type="text" />
+										</div>
+									</div>
+									<xed:controls>append remove</xed:controls>
+								</xed:repeat>
+							</xed:bind>
+						</div>
+						<div class="row">
+							<xed:bind xpath="dci:publisher">
+								<div class="form-group">
+									<h2 class="sub-header">
+										<xed:output i18n="editor.label.publisher" />
+									</h2>
+									<div class="col-md-10">
+										<input id="publisher" placeholder="{i18n:editor.placeholder.publisher}"
+											class="form-control input-md" type="text" />
+									</div>
+								</div>
+							</xed:bind>
+						</div>
+						<div class="row">
+							<xed:bind xpath="dci:publicationYear">
+								<div class="form-group">
+									<h2 class="sub-header">
+										<xed:output i18n="editor.label.publicationYear" />
+									</h2>
+									<div class="col-md-10">
+										<input id="publicationYear" placeholder="{i18n:editor.placeholder.publicationYear}"
+											class="form-control input-md" type="text" />
+									</div>
+								</div>
+							</xed:bind>
+						</div>
+						<div class="row">
+							<xed:bind xpath="language">
+								<div class="form-group">
+									<h2 class="sub-header">
+										<xed:output i18n="editor.label.language" />
+									</h2>
+									<div class="col-md-6">
+										<select id="subject" class="form-control">
+											<option value="eng">
+												<xed:output i18n="editor.option.english" />
+											</option>
+											<option value="deu">
+												<xed:output i18n="editor.option.german" />
+											</option>
+											<option value="fra">
+												<xed:output i18n="editor.option.french" />
+											</option>
+										</select>
+									</div>
+								</div>
+							</xed:bind>
+						</div>
+						<div class="row">
+							<xed:bind xpath="dci:resourceType">
+								<div class="form-group">
+									<h2 class="sub-header">
+										<xed:output i18n="editor.label.resourceType" />
+									</h2>
+									<div class="col-md-2">
+										<xed:bind xpath="@resourceTypeGeneral">
+											<select id="subject" class="form-control">
+												<option value="Dataset">
+													<xed:output i18n="editor.option.dataset" />
+												</option>
+												<option value="Software">
+													<xed:output i18n="editor.option.software" />
+												</option>
+											</select>
+										</xed:bind>
+									</div>
+									<div class="col-md-8">
+										<input id="resourceType" placeholder="{i18n:editor.placeholder.resourceType}"
+											class="form-control input-md-6" type="text" />
+									</div>
+								</div>
+							</xed:bind>
+
+						</div>
+						<div class="row">
+							<xed:bind xpath="dci:version">
+								<div class="form-group">
+									<h2 class="sub-header">
+										<xed:output i18n="editor.label.version" />
+									</h2>
+									<div class="col-md-4">
+										<input id="version" placeholder="{i18n:editor.placeholder.version}"
+											class="form-control input-md" type="text" value="1.0" />
+									</div>
+								</div>
+							</xed:bind>
+						</div>
+						<div class="row">
+							<xed:bind xpath="dci:subjects">
+								<h2 class="sub-header">
+									<xed:output i18n="editor.label.subject" />
+								</h2>
+								<xed:repeat xpath="dci:subject" min="1">
+									<div class="form-group">
+
+										<div class="col-md-8">
+											<input id="subject" placeholder="{i18n:editor.placeholder.subject}"
+												class="form-control input-md" type="text" />
+										</div>
+										<xed:controls>append remove</xed:controls>
+									</div>
+								</xed:repeat>
+
+							</xed:bind>
+						</div>
+						<div class="row">
+							<h2 class="sub-header">
+								<xed:output i18n="editor.label.description" />
+							</h2>
+							<xed:bind xpath="dci:descriptions">
+								<xed:repeat xpath="dci:description" min="1">
+									<div class="form-group">
+										<xed:bind xpath="@descriptionType">
+											<div class="col-md-2">
+												<select id="descriptionType" class="form-control">
+													<option value="Abstract">
+														<xed:output i18n="editor.option.abstract" />
+													</option>
+												</select>
+											</div>
+										</xed:bind>
+										<div class="col-md-8">
+											<input id="description" placeholder="{i18n:editor.placeholder.description}"
+												class="form-control input-md" type="text" />
+										</div>
+										<xed:controls>append remove</xed:controls>
+									</div>
+								</xed:repeat>
+							</xed:bind>
+						</div>
+						<div class="col-sm-9 col-md-10 col-md-offset-1 main">
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="save"></label>
+								<div class="col-md-8">
+									<button id="save" class="btn btn-success" type="submit"
+										xed:target="servlet" xed:href="XMLDefine">
+										<xed:output i18n="common.button.save" />
+									</button>
+									<button id="cancel" class="btn btn-danger" type="submit"
+										xed:target="cancel">
+										<xed:output i18n="common.button.cancel" />
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</xed:bind>
+			</xed:form>
+		</div>
+	</body>
+</html>
